@@ -1,0 +1,35 @@
+<html>
+
+    <head>
+        <title>Chat App</title>
+    </head>
+
+    <body>
+        <h1>Hello World!!</h1>
+
+        <ul id = "messages"></ul>
+
+        <form action="">
+            <input id="msg">
+            <button>send msg</button>
+        </form>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script>
+        $(function () {
+            var socket = io();
+            $('form').submit( (e)=>{
+                e.preventDefault();
+                socket.emit('chatmessage', $('#msg').val());
+                $('#msg').val('');
+                return false;
+            } );
+            socket.on( 'chatmessage' , (msg)=>{
+                console.log(msg);
+                $('#messages').append($('<li>').text(msg));
+            });
+        });
+        </script>
+    </body>
+</html>
