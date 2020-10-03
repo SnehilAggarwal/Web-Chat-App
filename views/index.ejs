@@ -16,20 +16,6 @@
 
         <script src="/socket.io/socket.io.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script>
-        $(function () {
-            var socket = io();
-            $('form').submit( (e)=>{
-                e.preventDefault();
-                socket.emit('chatmessage', $('#msg').val());
-                $('#msg').val('');
-                return false;
-            } );
-            socket.on( 'chatmessage' , (msg)=>{
-                console.log(msg);
-                $('#messages').append($('<li>').text(msg));
-            });
-        });
-        </script>
+        <script type="text/javascript" src="/client.js"></script>
     </body>
 </html>

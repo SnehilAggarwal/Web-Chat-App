@@ -3,11 +3,13 @@ var app = express();
 var bodyParser = require('body-parser');
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
+var path = require('path');
 
 app.use(bodyParser.urlencoded({extended : true}));
 app.set("view engine","ejs");
+app.use(express.static(path.join(__dirname, 'clientjs')));
 
-var messages = ["Good","Boy"];
+// var messages = ["Good","Boy"];
 
 app.get("/", (req,res) =>{
     res.render("index.ejs");
