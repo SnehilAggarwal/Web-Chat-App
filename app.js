@@ -22,10 +22,14 @@ io.on('connection', (socket) => {
        console.log("USer Discnnected"); 
     });
 
+    socket.on( 'userlogin' , (username)=>{
+        socket.nickname = username;
+    });
+
     socket.on( 'chatmessage' , (msg)=>{
         console.log(msg);
-        io.emit('chatmessage' , msg );
-    } )
+        io.emit('chatmessage' , socket.nickname, msg );
+    } );
 });
 
 // app.get("/chat" , ( req,res) =>{
