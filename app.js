@@ -7,7 +7,7 @@ var path = require('path');
 
 app.use(bodyParser.urlencoded({extended : true}));
 app.set("view engine","ejs");
-app.use(express.static(path.join(__dirname, 'clientjs')));
+app.use(express.static(path.join(__dirname, 'scripts')));
 
 // var messages = ["Good","Boy"];
 
@@ -28,7 +28,7 @@ io.on('connection', (socket) => {
 
     socket.on( 'chatmessage' , (msg)=>{
         console.log(msg);
-        io.emit('chatmessage' , socket.nickname, msg );
+        socket.broadcast.emit('chatmessage' , socket.nickname, msg );
     } );
 });
 
