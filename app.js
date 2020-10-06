@@ -7,6 +7,7 @@ var path = require('path');
 
 app.use(bodyParser.urlencoded({extended : true}));
 app.set("view engine","ejs");
+app.use(express.static(__dirname + '/styles'));
 app.use(express.static(path.join(__dirname, 'scripts')));
 
 // var messages = ["Good","Boy"];
@@ -19,7 +20,7 @@ app.get("/", (req,res) =>{
 io.on('connection', (socket) => {
     console.log("A user Coneected");
     socket.on( 'disconnect' , ()=>{
-       console.log("USer Discnnected"); 
+       console.log("User Discnnected"); 
     });
 
     socket.on( 'userlogin' , (username)=>{
@@ -27,7 +28,6 @@ io.on('connection', (socket) => {
     });
 
     socket.on( 'chatmessage' , (msg)=>{
-        console.log(msg);
         socket.broadcast.emit('chatmessage' , socket.nickname, msg );
     } );
 });
