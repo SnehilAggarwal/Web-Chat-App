@@ -42,6 +42,6 @@ io.on('connection', (socket) => {
 //     res.redirect("/chat");
 // });
 
-http.listen(4401,()=>{
+http.listen(process.env.PORT || 4401,()=>{
     console.log("Server Started");
 })
