@@ -60,6 +60,10 @@ html,body {
     float: left;
 }
 
+.adminmessage{
+    display:inline-block
+}
+
 /*
 .othermessage:after{
     content: '';

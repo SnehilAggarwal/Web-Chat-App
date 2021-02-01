@@ -18,13 +18,16 @@ app.get("/", (req,res) =>{
 
 
 io.on('connection', (socket) => {
-    console.log("A user Coneected");
+    //console.log("A user Coneected");
     socket.on( 'disconnect' , ()=>{
-       console.log("User Discnnected"); 
+       //console.log("User Discnnected"); 
     });
 
     socket.on( 'userlogin' , (username)=>{
         socket.nickname = username;
+        console.log(username + " Login");
+        socket.emit('joinchat' , "You");
+        socket.broadcast.emit('joinchat' , username);
     });
 
     socket.on( 'chatmessage' , (msg)=>{
